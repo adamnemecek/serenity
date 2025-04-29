@@ -126,7 +126,7 @@ impl Serialize for ButtonKind {
         }
 
         let helper = match self {
-            ButtonKind::Link {
+            Self::Link {
                 url,
             } => Helper {
                 style: 5,
@@ -134,7 +134,7 @@ impl Serialize for ButtonKind {
                 custom_id: None,
                 sku_id: None,
             },
-            ButtonKind::Premium {
+            Self::Premium {
                 sku_id,
             } => Helper {
                 style: 6,
@@ -142,7 +142,7 @@ impl Serialize for ButtonKind {
                 custom_id: None,
                 sku_id: Some(*sku_id),
             },
-            ButtonKind::NonLink {
+            Self::NonLink {
                 custom_id,
                 style,
             } => Helper {

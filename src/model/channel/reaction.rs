@@ -330,7 +330,7 @@ impl Serialize for ReactionType {
         S: Serializer,
     {
         match self {
-            ReactionType::Custom {
+            Self::Custom {
                 animated,
                 id,
                 name,
@@ -343,7 +343,7 @@ impl Serialize for ReactionType {
 
                 map.end()
             },
-            ReactionType::Unicode(name) => {
+            Self::Unicode(name) => {
                 let mut map = serializer.serialize_map(Some(1))?;
 
                 map.serialize_entry("name", name)?;
@@ -365,14 +365,14 @@ impl ReactionType {
     #[cfg(feature = "http")]
     pub fn as_data(&self) -> String {
         match self {
-            ReactionType::Custom {
+            Self::Custom {
                 id,
                 name,
                 ..
             } => {
                 format!("{}:{id}", name.as_deref().unwrap_or_default())
             },
-            ReactionType::Unicode(unicode) => {
+            Self::Unicode(unicode) => {
                 utf8_percent_encode(unicode, NON_ALPHANUMERIC).to_string()
             },
         }
@@ -572,7 +572,7 @@ impl fmt::Display for ReactionType {
     /// [unicode][`ReactionType::Unicode`], then the inner unicode is displayed.
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            ReactionType::Custom {
+            Self::Custom {
                 animated,
                 id,
                 name,
@@ -591,7 +591,7 @@ impl fmt::Display for ReactionType {
                 fmt::Display::fmt(id, f)?;
                 f.write_char('>')
             },
-            ReactionType::Unicode(unicode) => f.write_str(unicode),
+            Self::Unicode(unicode) => f.write_str(unicode),
         }
     }
 }

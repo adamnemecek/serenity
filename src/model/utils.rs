@@ -93,9 +93,9 @@ pub(super) enum StrOrInt<'de> {
 impl StrOrInt<'_> {
     pub fn parse(&self) -> Result<u64, std::num::ParseIntError> {
         match self {
-            StrOrInt::String(val) => val.parse(),
-            StrOrInt::Str(val) => val.parse(),
-            StrOrInt::Int(val) => Ok(*val),
+            Self::String(val) => val.parse(),
+            Self::Str(val) => val.parse(),
+            Self::Int(val) => Ok(*val),
         }
     }
 

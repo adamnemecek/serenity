@@ -22,9 +22,9 @@ impl serde::Serialize for CreateActionRow {
         map.serialize_entry("type", &1_u8)?;
 
         match self {
-            CreateActionRow::Buttons(buttons) => map.serialize_entry("components", &buttons)?,
-            CreateActionRow::SelectMenu(select) => map.serialize_entry("components", &[select])?,
-            CreateActionRow::InputText(input) => map.serialize_entry("components", &[input])?,
+            Self::Buttons(buttons) => map.serialize_entry("components", &buttons)?,
+            Self::SelectMenu(select) => map.serialize_entry("components", &[select])?,
+            Self::InputText(input) => map.serialize_entry("components", &[input])?,
         }
 
         map.end()

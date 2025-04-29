@@ -528,16 +528,16 @@ impl serde::Serialize for MessageInteractionMetadata {
         }
 
         match self {
-            MessageInteractionMetadata::Command(val) => {
+            Self::Command(val) => {
                 serialize_with_type(serializer, val, InteractionType::Command)
             },
-            MessageInteractionMetadata::Component(val) => {
+            Self::Component(val) => {
                 serialize_with_type(serializer, val, InteractionType::Component)
             },
-            MessageInteractionMetadata::ModalSubmit(val) => {
+            Self::ModalSubmit(val) => {
                 serialize_with_type(serializer, val, InteractionType::Modal)
             },
-            &MessageInteractionMetadata::Unknown(kind) => {
+            &Self::Unknown(kind) => {
                 tracing::warn!("Tried to serialize MessageInteractionMetadata::Unknown({}), serialising null instead", u8::from(kind));
                 serializer.serialize_none()
             },
