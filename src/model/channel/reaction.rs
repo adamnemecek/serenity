@@ -372,9 +372,7 @@ impl ReactionType {
             } => {
                 format!("{}:{id}", name.as_deref().unwrap_or_default())
             },
-            Self::Unicode(unicode) => {
-                utf8_percent_encode(unicode, NON_ALPHANUMERIC).to_string()
-            },
+            Self::Unicode(unicode) => utf8_percent_encode(unicode, NON_ALPHANUMERIC).to_string(),
         }
     }
 
